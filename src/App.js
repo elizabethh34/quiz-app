@@ -3,16 +3,19 @@ import './App.css';
 import { allQuestions } from './questions';
 import Question from './components/Question';
 import Header from './components/Header';
+import Start from './components/Start';
 
 class App extends Component {
   state = {
     selectedQuestions: allQuestions,
     score: 0,
     currentQuestion: null,
-    questionIndex: 0
+    questionIndex: 0,
+    startOpacity: 1,
+    questionOpacity: 0
   }
 
-  StartNewGame = () => {
+  StartNewQuiz = () => {
     this.setState({
       selectedQuestions: this.GetNewQuestions(),
       score: 0,
@@ -21,13 +24,23 @@ class App extends Component {
     });
   }
 
+  
+  handleOpacityChange = () => {
+    this.setState(prevState => {
+      return {
+        startOpacity: 0,
+        questionOpacity: 1
+      }
+    })
+  }
+
   EndQuiz = () => {
     if (this.state.questionIndex >= this.state.selectedQuestions.length){
       // end game
     }
   }
 
-  GetNextQuestion = () =>{
+  GetNextQuestion = () => {
     this.setState(prevState => {
       return {
         questionIndex: prevState.questionIndex++
@@ -52,7 +65,16 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <Question question={this.state.selectedQuestions[0]}/>
+        <div className="quiz-container">
+          <Start 
+            onStartClick={this.handleOpacityChange}
+            startOpacity={this.state.startOpacity}
+          />
+          <Question
+            question={this.state.selectedQuestions[0]}
+            questionOpacity={this.state.questionOpacity}
+          />
+        </div>
       </Fragment> 
     );
   }
