@@ -16,7 +16,7 @@ const Question = (props) => {
             )
           })}
         </div>
-        <button>Next</button>
+        <button className="next-question">Next</button>
       </div> 
     </div>
   );

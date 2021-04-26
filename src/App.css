@@ -12,6 +12,7 @@
 
 .question-info {
   padding: 40px;
+  position: relative;
 }
 
 .options-container {
@@ -42,4 +43,18 @@
 
 .question {
   text-align: center;
+}
+
+.next-question {
+  padding: 10px;
+  background-color: rgb(122, 58, 122);
+  border-radius: 3px;
+  color:rgb(233, 245, 244);
+  position: absolute;
+  right: 25px;
+  bottom: 20px;
+}
+
+.next-question:hover {
+  cursor: pointer;
 }
