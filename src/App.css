@@ -19,6 +19,11 @@
   border-radius: 5px;
 }
 
+.result-container {
+  background-color: rgb(95, 158, 139);
+  border-radius: 5px;
+}
+
 .start-button {
   background-color: rgb(122, 58, 122);
   color:rgb(233, 245, 244);
@@ -87,6 +92,12 @@
   position: absolute;
   right: 25px;
   bottom: 20px;
+  border: none;
+}
+
+.next-question:hover {
+  color:rgb(122, 58, 122);
+  background-color: rgb(233, 245, 244);
 }
 
 .next-question:hover {

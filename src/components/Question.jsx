@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Question = (props) => {
-  const { question, questionOpacity, changeQuestion, questionIndex, numOfQuestions, endQuiz, determineIfCorrect } = props;
+  const { question, questionOpacity, changeQuestion, questionIndex, numOfQuestions, determineIfCorrect } = props;
 
   return (
     <div className="question-container" style={{opacity: questionOpacity}}>
@@ -18,7 +18,7 @@ const Question = (props) => {
         </div>
         <button
           className="next-question"
-          onClick={questionIndex < numOfQuestions - 1? () => changeQuestion() : () => endQuiz()}
+          onClick={() => changeQuestion()}
         >{questionIndex < numOfQuestions - 1? "Next" : "Finish"}
         </button>
       </div> 

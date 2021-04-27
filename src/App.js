@@ -4,14 +4,15 @@ import { allQuestions } from './questions';
 import Question from './components/Question';
 import Header from './components/Header';
 import Start from './components/Start';
+import Result from './components/Result';
 
 class App extends Component {
   state = {
-    selectedQuestions: allQuestions,
+    selectedQuestions: [],
     score: 0,
     questionIndex: 0,
     startOpacity: 1,
-    questionOpacity: 0
+    questionOpacity: 0,
   }
 
   startNewQuiz = () => {
@@ -20,7 +21,8 @@ class App extends Component {
       score: 0,
       questionIndex: 0,
       startOpacity: 0,
-      questionOpacity: 1
+      questionOpacity: 1,
+      numOfClicks: 0
     });
   }
 
@@ -42,20 +44,31 @@ class App extends Component {
 
   handleQuestionChange = () => {
     this.setState(prevState => {
-      return {questionIndex: prevState.questionIndex + 1}
-   });
+      return {
+        questionIndex: prevState.questionIndex + 1,
+        numOfClicks: 0
+      }
+    });
   }
 
   determineIfCorrect = (choice, correct) => {
-    if (choice === correct) {
+    this.setState(prevState => {
+      return {numOfClicks: prevState.numOfClicks + 1}
+    });
+
+    if (choice === correct && this.state.numOfClicks < 1) {
       this.setState(prevState => {
         return {score: prevState.score + 1}
       });
+      return true;
+    } else {
+      return false;
     }
   }
 
   render() { 
-    const { startOpacity, questionOpacity, selectedQuestions, questionIndex } = this.state;
+    const { startOpacity, questionOpacity, selectedQuestions, questionIndex, score } = this.state;
+    console.log(questionIndex, selectedQuestions.length)
     return (
       <Fragment>
         <Header />
@@ -64,15 +77,20 @@ class App extends Component {
             onStartClick={this.startNewQuiz}
             startOpacity={startOpacity}
           />
-          <Question
-            question={selectedQuestions[questionIndex]}
-            questionOpacity={questionOpacity}
-            changeQuestion={this.handleQuestionChange}
-            questionIndex={questionIndex}
-            numOfQuestions={selectedQuestions.length}
-            endQuiz={this.endQuiz}
-            determineIfCorrect={this.determineIfCorrect}
-          />
+          {questionIndex < selectedQuestions.length?
+            <Question
+              question={selectedQuestions[questionIndex]}
+              questionOpacity={questionOpacity}
+              changeQuestion={this.handleQuestionChange}
+              questionIndex={questionIndex}
+              numOfQuestions={selectedQuestions.length}
+              endQuiz={this.endQuiz}
+              determineIfCorrect={this.determineIfCorrect}
+            /> : 
+            <Result 
+              score={score}
+              numOfQuestions={selectedQuestions.length}
+            />}
         </div>
       </Fragment> 
     );
