@@ -9,46 +9,26 @@ class App extends Component {
   state = {
     selectedQuestions: allQuestions,
     score: 0,
-    currentQuestion: null,
     questionIndex: 0,
     startOpacity: 1,
     questionOpacity: 0
   }
 
-  StartNewQuiz = () => {
+  startNewQuiz = () => {
     this.setState({
-      selectedQuestions: this.GetNewQuestions(),
+      selectedQuestions: this.getNewQuestions(),
       score: 0,
-      currentQuestion: null,
-      questionIndex: 0
+      questionIndex: 0,
+      startOpacity: 0,
+      questionOpacity: 1
     });
   }
 
-  
-  handleOpacityChange = () => {
-    this.setState(prevState => {
-      return {
-        startOpacity: 0,
-        questionOpacity: 1
-      }
-    })
+  endQuiz = () => {
+    console.log("end")
   }
 
-  EndQuiz = () => {
-    if (this.state.questionIndex >= this.state.selectedQuestions.length){
-      // end game
-    }
-  }
-
-  GetNextQuestion = () => {
-    this.setState(prevState => {
-      return {
-        questionIndex: prevState.questionIndex++
-      }
-    });
-  }
-
-  GetNewQuestions = () => {
+  getNewQuestions = () => {
     let newQuestions = [];
     while (newQuestions.length < 5){
       const randomIndex = Math.floor(Math.random() * allQuestions.length);
@@ -57,22 +37,41 @@ class App extends Component {
         newQuestions.push(allQuestions[randomIndex]);
       }
     }
-    console.log(newQuestions)
     return newQuestions;
   }
 
+  handleQuestionChange = () => {
+    this.setState(prevState => {
+      return {questionIndex: prevState.questionIndex + 1}
+   });
+  }
+
+  determineIfCorrect = (choice, correct) => {
+    if (choice === correct) {
+      this.setState(prevState => {
+        return {score: prevState.score + 1}
+      });
+    }
+  }
+
   render() { 
+    const { startOpacity, questionOpacity, selectedQuestions, questionIndex } = this.state;
     return (
       <Fragment>
         <Header />
         <div className="quiz-container">
           <Start 
-            onStartClick={this.handleOpacityChange}
-            startOpacity={this.state.startOpacity}
+            onStartClick={this.startNewQuiz}
+            startOpacity={startOpacity}
           />
           <Question
-            question={this.state.selectedQuestions[0]}
-            questionOpacity={this.state.questionOpacity}
+            question={selectedQuestions[questionIndex]}
+            questionOpacity={questionOpacity}
+            changeQuestion={this.handleQuestionChange}
+            questionIndex={questionIndex}
+            numOfQuestions={selectedQuestions.length}
+            endQuiz={this.endQuiz}
+            determineIfCorrect={this.determineIfCorrect}
           />
         </div>
       </Fragment> 
