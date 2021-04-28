@@ -16,15 +16,15 @@ class Result extends Component {
   }
 
   render() { 
-    const { score, numOfQuestions } = this.props;
+    const { score, numOfQuestions, onPlayAgain } = this.props;
 
     return (
       <div className="result-container">
-        <h2>Result</h2>
-        <h3>{score}/{numOfQuestions}</h3>
-        <h4>{this.determineRanking(score, numOfQuestions)}</h4>
-        <div className="play-again-container">
-          <button>Play Again</button>
+        <div className="result-info">
+          <h2>Result</h2>
+          <h3>{score}/{numOfQuestions}</h3>
+          <h4>{this.determineRanking(score, numOfQuestions)}</h4>
+          <button className="play-again" onClick={() => onPlayAgain()}>Play Again</button>
         </div>
       </div>
     );

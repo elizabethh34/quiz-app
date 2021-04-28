@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Start = (props) => {
-  const { onStartClick, startOpacity } = props;
+  const { onStartClick } = props;
 
   return (
-    <div className="start-container" style={{opacity: startOpacity}}>
-      <div className="start-button" onClick={() => onStartClick()}>Start</div>
+    <div className="start-container">
+      <button className="start-button" onClick={() => onStartClick()}>Start</button>
     </div>
   );
 }

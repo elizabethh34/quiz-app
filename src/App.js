@@ -8,26 +8,21 @@ import Result from './components/Result';
 
 class App extends Component {
   state = {
+    started: false,
     selectedQuestions: [],
     score: 0,
     questionIndex: 0,
-    startOpacity: 1,
-    questionOpacity: 0,
+    numOfClicks: 0
   }
 
   startNewQuiz = () => {
     this.setState({
+      started: true,
       selectedQuestions: this.getNewQuestions(),
       score: 0,
       questionIndex: 0,
-      startOpacity: 0,
-      questionOpacity: 1,
       numOfClicks: 0
     });
-  }
-
-  endQuiz = () => {
-    console.log("end")
   }
 
   getNewQuestions = () => {
@@ -67,20 +62,17 @@ class App extends Component {
   }
 
   render() { 
-    const { startOpacity, questionOpacity, selectedQuestions, questionIndex, score } = this.state;
-    console.log(questionIndex, selectedQuestions.length)
+    const { started, selectedQuestions, questionIndex, score } = this.state;
+    
     return (
       <Fragment>
         <Header />
         <div className="quiz-container">
-          <Start 
+          {!started ? <Start 
             onStartClick={this.startNewQuiz}
-            startOpacity={startOpacity}
-          />
-          {questionIndex < selectedQuestions.length?
+          /> : questionIndex < selectedQuestions.length ?
             <Question
               question={selectedQuestions[questionIndex]}
-              questionOpacity={questionOpacity}
               changeQuestion={this.handleQuestionChange}
               questionIndex={questionIndex}
               numOfQuestions={selectedQuestions.length}
@@ -90,7 +82,8 @@ class App extends Component {
             <Result 
               score={score}
               numOfQuestions={selectedQuestions.length}
-            />}
+              onPlayAgain={this.startNewQuiz}
+            />}          
         </div>
       </Fragment> 
     );
