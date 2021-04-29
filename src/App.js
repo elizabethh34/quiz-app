@@ -51,7 +51,7 @@ class App extends Component {
       return {numOfClicks: prevState.numOfClicks + 1}
     });
 
-    if (choice === correct && this.state.numOfClicks < 1) {
+    if (choice === correct && this.state.numOfClicks === 0) {
       this.setState(prevState => {
         return {score: prevState.score + 1}
       });
