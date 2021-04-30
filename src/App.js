@@ -1,10 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { allQuestions } from './questions';
 import Question from './components/Question';
 import Header from './components/Header';
 import Start from './components/Start';
 import Result from './components/Result';
+import background from './images/background-map.png';
 
 class App extends Component {
   state = {
@@ -65,7 +66,7 @@ class App extends Component {
     const { started, selectedQuestions, questionIndex, score } = this.state;
     
     return (
-      <Fragment>
+      <div className="main-container" style={{backgroundImage: `linear-gradient(to top, rgba(218, 160, 241, 0.5), rgba(68, 30, 83, 1)), url(${background})`}}>
         <Header />
         <div className="quiz-container">
           {!started ? <Start 
@@ -85,7 +86,7 @@ class App extends Component {
               onPlayAgain={this.startNewQuiz}
             />}          
         </div>
-      </Fragment> 
+      </div> 
     );
   }
 }

@@ -21,9 +21,9 @@ class Result extends Component {
     return (
       <div className="result-container">
         <div className="result-info">
-          <h2>Result</h2>
-          <h3>{score}/{numOfQuestions}</h3>
-          <h4>{this.determineRanking(score, numOfQuestions)}</h4>
+          <h2 className="result">Result</h2>
+          <h3 className="score">{score}/{numOfQuestions}</h3>
+          <h4 className="ranking">{this.determineRanking(score, numOfQuestions)}</h4>
           <button className="play-again" onClick={() => onPlayAgain()}>Play Again</button>
         </div>
       </div>

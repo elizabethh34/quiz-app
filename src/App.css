@@ -1,5 +1,12 @@
 .header {
   text-align: center;
+  padding-top: 75px;
+  font-size: 2.5em;
+  color: rgb(233, 245, 244);
+}
+
+.main-container {
+  height: 100vh;
 }
 
 .quiz-container {
@@ -25,7 +32,7 @@
 
 .question-container, .result-container, .start-container {
   border-radius: 5px;
-  background-color: rgb(95, 158, 139);
+  background-color: rgb(71, 138, 118);
 }
 
 .question-info {
@@ -61,6 +68,8 @@
 
 .question {
   text-align: center;
+  font-size: 1.75em;
+  margin-bottom: 20px;
 }
 
 .next-question {
