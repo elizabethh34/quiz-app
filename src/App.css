@@ -78,9 +78,10 @@
   border-radius: 3px;
   color:rgb(233, 245, 244);
   position: absolute;
-  right: 25px;
-  bottom: 20px;
+  right: 10px;
+  bottom: 10px;
   border: none;
+  font-size: 1.25em;
 }
 
 .next-question:hover, .play-again:hover, .start-button:hover {
@@ -97,7 +98,25 @@
 .play-again {
   border: none;
   padding: 10px;
+  margin-top: 15px;
   background-color: rgb(122, 58, 122);
   border-radius: 3px;
   color:rgb(233, 245, 244);
+  font-size: 1.25em;
+}
+
+.result {
+  font-size: 2em;
+}
+
+.score {
+  font-size: 1.75em;
+}
+
+.ranking {
+  font-size: 1.25em;
+}
+
+.result, .score, .ranking {
+  padding: 15px;
 }

@@ -66,7 +66,7 @@ class App extends Component {
     const { started, selectedQuestions, questionIndex, score } = this.state;
     
     return (
-      <div className="main-container" style={{backgroundImage: `linear-gradient(to top, rgba(218, 160, 241, 0.5), rgba(68, 30, 83, 1)), url(${background})`}}>
+      <div className="main-container" style={{backgroundImage: `linear-gradient(to top, rgba(171, 155, 175, 0.6), rgba(51, 39, 54, 0.9)), url(${background})`}}>
         <Header />
         <div className="quiz-container">
           {!started ? <Start 
