@@ -28,7 +28,7 @@ class App extends Component {
 
   getNewQuestions = () => {
     let newQuestions = [];
-    while (newQuestions.length < 5){
+    while (newQuestions.length < 10){
       const randomIndex = Math.floor(Math.random() * allQuestions.length);
 
       if (!newQuestions.includes(allQuestions[randomIndex])) {

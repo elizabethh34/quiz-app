@@ -19,6 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .start-button {
@@ -28,6 +29,10 @@
   border-radius: 5px;
   padding: 10px;
   font-size: 3em;
+}
+
+.intro {
+  padding-top: 30px; 
 }
 
 .question-container, .result-container, .start-container {
